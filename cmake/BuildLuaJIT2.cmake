@@ -60,9 +60,12 @@ else()
     set(LUAJIT_PATCH_FILE ${CMAKE_CURRENT_LIST_DIR}/stub.patch)
     set(LUAJIT_PATCH_COMMAND)
 endif()
+## TODO: CHECK VERSION OF UBUNTU AND ADD CONDITIONAL INSTALLATION OF LUAJIT
 ExternalProject_Add(project_luajit
-    URL http://www.robotics-erlangen.de/downloads/libraries/LuaJIT-2.0.5.tar.gz
-    URL_HASH SHA256=874b1f8297c697821f561f9b73b57ffd419ed8f4278c82e05b48806d30c1e979
+    #URL http://www.robotics-erlangen.de/downloads/libraries/LuaJIT-2.0.5.tar.gz
+    #URL_HASH SHA256=874b1f8297c697821f561f9b73b57ffd419ed8f4278c82e05b48806d30c1e979
+    URL https://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gz
+    URL_HASH SHA256=1ad2e34b111c802f9d0cdf019e986909123237a28c746b21295b63c9e785d9c3
     DOWNLOAD_NO_PROGRESS true
     BUILD_IN_SOURCE true
     ${LUAJIT_PATCH_COMMAND}
@@ -82,10 +85,12 @@ set_target_properties(project_luajit PROPERTIES EXCLUDE_FROM_ALL true)
 add_library(lib::luajit UNKNOWN IMPORTED)
 add_dependencies(lib::luajit project_luajit)
 # cmake enforces that the include directory exists
-file(MAKE_DIRECTORY "${install_dir}/include/luajit-2.0")
+#file(MAKE_DIRECTORY "${install_dir}/include/luajit-2.0")
+file(MAKE_DIRECTORY "${install_dir}/include/luajit-2.1")
 set_target_properties(lib::luajit PROPERTIES
     IMPORTED_LOCATION "${install_dir}/${LUAJIT_SUBPATH}"
-    INTERFACE_INCLUDE_DIRECTORIES "${install_dir}/include/luajit-2.0"
+    #INTERFACE_INCLUDE_DIRECTORIES "${install_dir}/include/luajit-2.0"
+    INTERFACE_INCLUDE_DIRECTORIES "${install_dir}/include/luajit-2.1"
 )
 
 if(APPLE)

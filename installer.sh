@@ -24,9 +24,9 @@ then
 	echo "##### Building Simulator #####"
 	cd "$dir" 
 
-	if [ -d "$dir/bin" ];
+	if [ -d "$dir/build" ];
 	then
-		rm -rf "$dir/bin"
+		rm -rf "$dir/build"
 	else
 		mkdir build && cd build
 		cmake ..
@@ -43,6 +43,8 @@ then
 
 		echo "##### Installing app #####"
 		make install-menu
+		echo "##### Opening app #####"
+		cd "$dir/build/bin" && ./ra
 else
 	echo "##### ERROR: $dir directory does not exist. #####"
 fi

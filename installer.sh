@@ -23,11 +23,13 @@ then
 
 	echo "##### Building Simulator #####"
 	cd "$dir" 
-
-	if [ -d "$dir/build" ];
-	then
-		rm -rf "$dir/build"
-	else
+	#################################################################
+	# Descomentar estas lineas en caso de querer volver a buildear  #
+	#################################################################
+	#if [ -d "$dir/build" ];
+	#then
+	#	rm -rf "$dir/build"
+	#else
 		mkdir build && cd build
 		cmake ..
 		make

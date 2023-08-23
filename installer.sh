@@ -10,7 +10,7 @@
 echo "##### UruBots - ER-Force Framework #####"
 
 echo "##### Installing Dependencies #####"
-sudo apt-get install cmake protobuf-compiler libprotobuf-dev qtbase5-dev libqt5opengl5-dev g++ libusb-1.0-0-dev libsdl2-dev libqt5svg5-dev libssl-dev git -y
+sudo apt-get install cmake protobuf-compiler libprotobuf-dev qtbase5-dev libqt5opengl5-dev g++ libusb-1.0-0-dev libsdl2-dev libqt5svg5-dev libssl-dev cmake-curses-gui git -y
 
 dir="$PWD/erforceSimulator"
 mkdir $dir
@@ -31,7 +31,7 @@ then
 	#	rm -rf "$dir/build"
 	#else
 		mkdir build && cd build
-		cmake ..
+		cmake -DDOWNLOAD_V8=TRUE ..
 		make
 		###############################################################################
 		# Revisar la documentacion y descomentar estar lineas en caso de necesitarlas.#
